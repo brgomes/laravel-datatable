@@ -1,11 +1,11 @@
 <?php
 
-namespace Gunsnroses\LaravelDatatable;
+namespace Brgomes\LaravelDatatable;
 
+use Brgomes\LaravelDatatable\Console\Commands\MakeDatatable;
+use Brgomes\LaravelDatatable\DatatableView;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Gunsnroses\LaravelDatatable\Console\Commands\MakeDatatable;
-use Gunsnroses\LaravelDatatable\DatatableView;
 
 class DatatableServiceProvider extends ServiceProvider
 {

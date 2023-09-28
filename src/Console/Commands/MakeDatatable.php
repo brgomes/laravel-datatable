@@ -1,6 +1,6 @@
 <?php
 
-namespace Gunsnroses\LaravelDatatable\Console\Commands;
+namespace Brgomes\LaravelDatatable\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;

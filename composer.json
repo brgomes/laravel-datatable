@@ -1,11 +1,11 @@
 {
-    "name": "gunsnroses/laravel-datatable",
+    "name": "brgomes/laravel-datatable",
     "description": "A simple datatable for Laravel",
     "type": "package",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Gunsnroses\\LaravelDatatable\\": "src/"
+            "Brgomes\\LaravelDatatable\\": "src/"
         }
     },
     "authors": [
@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Gunsnroses\\LaravelDatatable\\DatatableServiceProvider"
+                "Brgomes\\LaravelDatatable\\DatatableServiceProvider"
             ]
         }
     }

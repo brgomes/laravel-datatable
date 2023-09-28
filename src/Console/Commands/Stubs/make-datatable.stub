@@ -2,7 +2,7 @@
 
 namespace App\Tables;
 
-use Gunsnroses\LaravelDatatable\Datatable;
+use Brgomes\LaravelDatatable\Datatable;
 
 class DummyDatatable extends Datatable
 {

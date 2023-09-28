@@ -1,6 +1,6 @@
 <?php
 
-namespace Gunsnroses\LaravelDatatable;
+namespace Brgomes\LaravelDatatable;
 
 use Illuminate\Database\Eloquent\Builder;
 
