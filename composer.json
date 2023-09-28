@@ -1,0 +1,17 @@
+{
+    "name": "gunsnroses/laravel-datatable",
+    "description": "A simple datatable for Laravel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Gunsnroses\\LaravelDatatable\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bruno Roberto Gomes"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

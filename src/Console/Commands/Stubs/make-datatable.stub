@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Tables;
+
+use Gunsnroses\LaravelDatatable\Datatable;
+
+class DummyDatatable extends Datatable
+{
+    public $view = '';
+
+    public function buttons(): array
+    {
+        return [];
+    }
+
+    public function search(): array
+    {
+        return [];
+    }
+
+    public function actions(): array
+    {
+        return [];
+    }
+
+    public function modals(): array
+    {
+        return [];
+    }
+}
