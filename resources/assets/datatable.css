@@ -99,7 +99,7 @@
 }
 
 .datatable .pagination {
-    /*display: block;*/
+    display: block;
 }
 
 .datatable .pagination > .active > a,

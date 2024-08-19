@@ -151,11 +151,11 @@
             <div class="table-responsive">
                 <form method="post" id="datatable-form{{ $datatableId }}">
                     @csrf
-                    <table class="table table-sm table-condensed" id="datatable{{ $datatableId }}">
+                    <table class="table table-condensed cut-off" id="datatable{{ $datatableId }}">
                         <thead>
                             <tr>
                                 @if (count($actions) > 0)
-                                    <th>
+                                    <th style="width:25px">
                                         <input type="checkbox" class="datatable-select">
                                     </th>
                                 @endif
