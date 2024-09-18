@@ -98,9 +98,9 @@
     background-color: #f5f5f5;
 }
 
-.datatable .pagination {
+/*.datatable .pagination {
     display: block;
-}
+}*/
 
 .datatable .pagination > .active > a,
 .datatable .pagination > .active > a:focus,
