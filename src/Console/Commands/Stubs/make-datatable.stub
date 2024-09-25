@@ -8,6 +8,11 @@ class DummyDatatable extends Datatable
 {
     public $view = '';
 
+    public function headers(): array
+    {
+        return [];
+    }
+
     public function buttons(): array
     {
         return [];

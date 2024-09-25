@@ -15,6 +15,10 @@ After, run composer install command:
 
 ## Using
 
+Register the package in app/config.php file. Add the line blow in providers section:
+
+    Brgomes\LaravelDatatable\DatatableServiceProvider::class,
+
 Add the lines below in webpack.mix.js file:
 
     .css('vendor/brgomes/laravel-datatable/resources/assets/datatable.css', 'public/assets/datatable')

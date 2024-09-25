@@ -2,27 +2,27 @@
     @if (($perPage > 0) || (count($actions) > 0) || $filter || $search['visible'] || (count($buttons) > 0) || (count($modals) > 0))
         <div class="row" style="margin-bottom:15px">
             <div class="col-lg-8 col-md-6">
-                <a href="{{ request()->url() }}" class="btn btn-default btn-transparent btn-radius" title="Listagem inicial"><i class="fa fa-list"></i></a>
+                <a href="{{ request()->url() }}" class="btn btn-default btn-transparent" title="Listagem inicial"><i class="fa fa-list"></i></a>
 
                 @if (count($buttons) > 0)
                     @foreach ($buttons as $button)
                         @if ($button['type'] == 'button')
-                            <button class="btn btn-default btn-transparent btn-radius" title="{{ $button['title'] }}" id="{{ $button['id'] }}">
+                            <button class="btn btn-default btn-transparent" title="{{ $button['title'] }}" id="{{ $button['id'] }}">
                                 {!! $button['content'] !!}
                             </button>
                         @elseif ($button['type'] == 'modal')
-                            <button class="btn btn-default btn-transparent btn-radius" title="{{ $button['title'] }}" data-toggle="modal" data-target="#{{ $button['modal'] }}" id="{{ $button['id'] }}">
+                            <button class="btn btn-default btn-transparent" title="{{ $button['title'] }}" data-toggle="modal" data-target="#{{ $button['modal'] }}" id="{{ $button['id'] }}">
                                 {!! $button['content'] !!}
                             </button>
                         @elseif ($button['type'] == 'a')
-                            <a href="{{ $button['href'] }}" class="btn btn-default btn-transparent btn-radius" title="{{ $button['title'] }}" id="{{ $button['id'] }}">
+                            <a href="{{ $button['href'] }}" class="btn btn-default btn-transparent" title="{{ $button['title'] }}" id="{{ $button['id'] }}">
                                 {!! $button['content'] !!}
                             </a>
                         @endif
                     @endforeach
                 @endif
 
-                <a href="" class="btn btn-default btn-transparent btn-radius" title="Atualizar"><i class="fa fa-refresh"></i></a>
+                <a href="" class="btn btn-default btn-transparent" title="Atualizar"><i class="fa fa-refresh"></i></a>
 
                 @if ($perPage > 0)
                     <div class="dropdown" title="Itens por página">
