@@ -18,10 +18,14 @@ class Datatable
     {
         $this->builder = $builder;
 
-        $this->perPage = config('datatable.per_page', 20);
-
         if (isset($perPage)) {
+            // Prioriza o valor passado por parâmetro
             $this->perPage = $perPage;
+        }
+
+        if (is_null($this->perPage)) {
+            // Se não houver valor passado por parâmetro, pega o valor da variável pública e depois o valor default do arquivo de configuração
+            $this->perPage = config('datatable.per_page', 20);
         }
     }
 
