@@ -3,6 +3,7 @@
 namespace Brgomes\LaravelDatatable;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Datatable
 {
@@ -14,7 +15,7 @@ class Datatable
 
     public $perPageQuery = 'perPage';
 
-    public function __construct(Builder $builder, $perPage = null)
+    public function __construct(Builder|HasMany $builder, $perPage = null)
     {
         $this->builder = $builder;
 
