@@ -52,14 +52,17 @@ class DatatableView extends Component
             'modals'        => [],
         ], $props->toArray());
 
-        $param = request()->get($perPageQuery);
-        $perPage = isset($param) ? $param : (int) $perPage;
-
-        if ($perPage > 0) {
-            //$items = $props->builder->paginate($perPage)->withQueryString();
-            $items = $props->builder->paginate($perPage)->appends(request()->all());;
+        if ($builder instanceof \Illuminate\Database\Eloquent\Collection) {
+            $items = $builder;
         } else {
-            $items = $props->builder->get();
+            $param = request()->get($perPageQuery);
+            $perPage = isset($param) ? $param : (int) $perPage;
+
+            if ($perPage > 0) {
+                $items = $props->builder->paginate($perPage)->appends(request()->all());;
+            } else {
+                $items = $props->builder->get();
+            }
         }
 
         $this->datatableId = uniqid();
