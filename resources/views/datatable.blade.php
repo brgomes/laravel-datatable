@@ -6,6 +6,10 @@
 
                 @if (count($buttons) > 0)
                     @foreach ($buttons as $button)
+                        @if ((isset($button['can']) && auth()->user()) && !auth()->user()->can($button['can']))
+                            @continue
+                        @endif
+
                         @if ($button['type'] == 'button')
                             <button class="btn btn-default btn-transparent" title="{{ $button['title'] }}" id="{{ $button['id'] }}">
                                 {!! $button['content'] !!}
@@ -63,6 +67,10 @@
                         @if (config('datatable.default_view') == 'bootstrap-3')
                             <ul class="dropdown-menu dropdown-menu-actions">
                                 @foreach ($actions as $action)
+                                    @if ((isset($action['can']) && auth()->user()) && !auth()->user()->can($action['can']))
+                                        @continue
+                                    @endif
+
                                     <li>
                                         <a href="#" data-toggle="modal" data-target="#datatable-modal-action{{ $datatableId }}" data-url="{{ $action['url'] }}">
                                             @if (isset($action['icon']))
@@ -76,6 +84,10 @@
                         @elseif (config('datatable.default_view') == 'bootstrap-4')
                             <div class="dropdown-menu dropdown-menu-actions">
                                 @foreach ($actions as $action)
+                                    @if ((isset($action['can']) && auth()->user()) && !auth()->user()->can($action['can']))
+                                        @continue
+                                    @endif
+
                                     <a href="#" class="dropdown-item" data-toggle="modal" data-target="#datatable-modal-action{{ $datatableId }}" data-url="{{ $action['url'] }}">
                                         @if (isset($action['icon']))
                                             <i class="{{ $action['icon'] }}"></i>
@@ -96,6 +108,10 @@
 
                 @if (count($modals) > 0)
                     @foreach ($modals as $modal)
+                        @if ((isset($modal['can']) && auth()->user()) && !auth()->user()->can($modal['can']))
+                            @continue
+                        @endif
+
                         <button class="btn btn-default btn-radius" title="{{ $modal['title'] }}" data-toggle="modal" data-target="#{{ $modal['modal'] }}">
                             <i class="{{ $modal['icon'] }}"></i>
                         </button>
