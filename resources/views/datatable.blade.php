@@ -76,7 +76,7 @@
                                             @if (isset($action['icon']))
                                                 <i class="{{ $action['icon'] }}"></i>
                                             @endif
-                                            {{ $action['label'] }}
+                                            {!! $action['label'] !!}
                                         </a>
                                     </li>
                                 @endforeach
@@ -92,7 +92,7 @@
                                         @if (isset($action['icon']))
                                             <i class="{{ $action['icon'] }}"></i>
                                         @endif
-                                        {{ $action['label'] }}
+                                        {!! $action['label'] !!}
                                     </a>
                                 @endforeach
                                 </div>
