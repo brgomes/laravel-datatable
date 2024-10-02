@@ -206,7 +206,7 @@
                                     <h4 class="modal-title">Executar ação em massa</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div id="datatable-msg-no-items{{ $datatableId }}" style="text-align:center; display:none">
+                                    <div id="datatable-msg-no-items{{ $datatableId }}" style="display:none">
                                         ⚠️
                                         Você deve selecionar pelo menos um item da lista para executar a ação.
                                     </div>
