@@ -207,8 +207,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div id="datatable-msg-no-items{{ $datatableId }}" style="text-align:center; display:none">
-                                        <img src="{{ asset('images/exclamation.png') }}" alt="">
-                                        <br><br>
+                                        ⚠️
                                         Você deve selecionar pelo menos um item da lista para executar a ação.
                                     </div>
                                     <div id="datatable-msg-confirm{{ $datatableId }}" style="display:none">
