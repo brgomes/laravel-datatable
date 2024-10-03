@@ -1,6 +1,6 @@
-.datatable a {
+/*.datatable a {
     color: #333;
-}
+}*/
 
 .datatable table {
     margin-bottom: 0;
@@ -146,7 +146,7 @@
     content: ' | ';
 }
 
-.datatable .links a {
+.datatable .links a, .datatable .links a:focus {
     color: #3c8dbc;
     text-decoration: none;
 }
