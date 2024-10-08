@@ -147,12 +147,12 @@
 }
 
 .datatable .links a, .datatable .links a:focus {
-    color: #3c8dbc;
+    /*color: #3c8dbc;*/
     text-decoration: none;
 }
 
 .datatable .links a:hover {
-    color: #72afd2;
+    /*color: #72afd2;*/
     text-decoration: none;
 }
 
