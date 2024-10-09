@@ -215,8 +215,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                    <button type="submit" class="btn btn-primary" id="datatable-btn-confirm{{ $datatableId }}">Confirmar</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary" id="datatable-btn-confirm{{ $datatableId }}">Sim</button>
                                 </div>
                             </div>
                         </div>
