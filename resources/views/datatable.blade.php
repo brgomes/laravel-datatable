@@ -152,7 +152,7 @@
             <div class="row datatable-header">
                 <div class="col-md-12">
                     <div>
-                        {{ $items->firstItem() }}-{{ $items->lastItem() }} de {{ $items->total() }}
+                        {{ number_format($items->firstItem(), 0, '', '.') }}-{{ number_format($items->lastItem(), 0, '', '.') }} de {{ number_format($items->total(), 0, '', '.') }}
                     </div>
                     <div style="justify-content:right">
                         {{ $items->links() }}
@@ -230,7 +230,7 @@
         <div class="row datatable-footer">
             <div class="col-md-12">
                 <div>
-                    {{ $items->firstItem() }}-{{ $items->lastItem() }} de {{ $items->total() }}
+                    {{ number_format($items->firstItem(), 0, '', '.') }}-{{ number_format($items->lastItem(), 0, '', '.') }} de {{ number_format($items->total(), 0, '', '.') }}
                 </div>
                 <div style="justify-content:right">
                     {{ $items->links() }}
@@ -252,8 +252,8 @@
                         Confirma a execução da ação selecionada?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Sim</button>
                     </div>
                 </div>
             </div>
