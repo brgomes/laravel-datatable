@@ -68,17 +68,19 @@
                             <ul class="dropdown-menu dropdown-menu-actions">
                                 @foreach ($actions as $action)
                                     @if ((isset($action['can']) && auth()->user()) && !auth()->user()->can($action['can']))
-                                        @continue
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target="#datatable-modal-forbidden{{ $datatableId }}" class="disabled">{!! $action['label'] !!}</a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target="#datatable-modal-action{{ $datatableId }}" data-url="{{ $action['url'] }}">
+                                                @if (isset($action['icon']))
+                                                    <i class="{{ $action['icon'] }}"></i>
+                                                @endif
+                                                {!! $action['label'] !!}
+                                            </a>
+                                        </li>
                                     @endif
-
-                                    <li>
-                                        <a href="#" data-toggle="modal" data-target="#datatable-modal-action{{ $datatableId }}" data-url="{{ $action['url'] }}">
-                                            @if (isset($action['icon']))
-                                                <i class="{{ $action['icon'] }}"></i>
-                                            @endif
-                                            {!! $action['label'] !!}
-                                        </a>
-                                    </li>
                                 @endforeach
                             </ul>
                         @elseif (config('datatable.default_view') == 'bootstrap-4')
@@ -259,4 +261,22 @@
             </div>
         </div>
     </form>
+
+    <div class="modal fade" id="datatable-modal-forbidden{{ $datatableId }}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ação não permitida</h4>
+                </div>
+                <div class="modal-body">
+                    ⚠️
+                    Você não tem permissão para executar esta ação.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
