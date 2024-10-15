@@ -122,7 +122,7 @@
             </div>
             <div class="col-lg-4 col-md-6 mt-sm-10">
                 @if ($search['visible'])
-                    <form method="get">
+                    <form action="{{ isset($search['action']) ? $search['action'] : null }}" method="get">
                         <div>
                             <div class="form-group">
                                 @if (config('datatable.default_view') == 'bootstrap-3')
@@ -217,8 +217,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-primary" id="datatable-btn-confirm{{ $datatableId }}">Sim</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </div>
                         </div>
