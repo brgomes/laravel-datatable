@@ -15,7 +15,7 @@
                                 {!! $button['content'] !!}
                             </button>
                         @elseif ($button['type'] == 'modal')
-                            <button class="btn btn-default btn-transparent" title="{{ $button['title'] }}" data-toggle="modal" data-target="#{{ $button['modal'] }}" id="{{ $button['id'] }}">
+                            <button class="btn btn-default btn-transparent" title="{{ $button['title'] }}" data-toggle="modal" data-target="{{ $button['modal'] }}" id="{{ $button['id'] }}">
                                 {!! $button['content'] !!}
                             </button>
                         @elseif ($button['type'] == 'a')
@@ -73,12 +73,21 @@
                                         </li>
                                     @else
                                         <li>
-                                            <a href="#" data-toggle="modal" data-target="#datatable-modal-action{{ $datatableId }}" data-url="{{ $action['url'] }}">
-                                                @if (isset($action['icon']))
-                                                    <i class="{{ $action['icon'] }}"></i>
-                                                @endif
-                                                {!! $action['label'] !!}
-                                            </a>
+                                            @if (isset($action['url']))
+                                                <a href="#" data-modal="#datatable-modal-action{{ $action['id'] }}" data-action-id="{{ $action['id'] }}">
+                                                    @if (isset($action['icon']))
+                                                        <i class="{{ $action['icon'] }}"></i>
+                                                    @endif
+                                                    {!! $action['label'] !!}
+                                                </a>
+                                            @elseif (isset($action['modal']))
+                                                <a href="#" data-modal="{{ $action['modal'] }}" data-action-id="{{ $action['id'] }}">
+                                                    @if (isset($action['icon']))
+                                                        <i class="{{ $action['icon'] }}"></i>
+                                                    @endif
+                                                    {!! $action['label'] !!}
+                                                </a>
+                                            @endif
                                         </li>
                                     @endif
                                 @endforeach
@@ -90,14 +99,23 @@
                                         @continue
                                     @endif
 
-                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#datatable-modal-action{{ $datatableId }}" data-url="{{ $action['url'] }}">
-                                        @if (isset($action['icon']))
-                                            <i class="{{ $action['icon'] }}"></i>
-                                        @endif
-                                        {!! $action['label'] !!}
-                                    </a>
+                                    @if (isset($action['url']))
+                                        <a href="#" class="dropdown-item" data-modal="#datatable-modal-action{{ $action['id'] }}" data-action-id="{{ $action['id'] }}">
+                                            @if (isset($action['icon']))
+                                                <i class="{{ $action['icon'] }}"></i>
+                                            @endif
+                                            {!! $action['label'] !!}
+                                        </a>
+                                    @elseif (isset($action['modal']))
+                                        <a href="#" class="dropdown-item" data-modal="{{ $action['modal'] }}" data-action-id="{{ $action['id'] }}">
+                                            @if (isset($action['icon']))
+                                                <i class="{{ $action['icon'] }}"></i>
+                                            @endif
+                                            {!! $action['label'] !!}
+                                        </a>
+                                    @endif
                                 @endforeach
-                                </div>
+                            </div>
                         @endif
                     </div>
                 @endif
@@ -200,29 +218,25 @@
                         </tbody>
                     </table>
 
-                    <div class="modal fade" id="datatable-modal-action{{ $datatableId }}">
+                    {{--<div class="modal fade" id="datatable-modal-action{{ $datatableId }}">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Executar ação em massa</h4>
+                                    <h4 class="modal-title" id="datatable-modal-action-modal-title">Executar ação em massa</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div id="datatable-msg-no-items{{ $datatableId }}" style="display:none">
-                                        ⚠️
-                                        Você deve selecionar pelo menos um item da lista para executar a ação.
-                                    </div>
-                                    <div id="datatable-msg-confirm{{ $datatableId }}" style="display:none">
+                                    <p id="datatable-modal-action-p-message{{ $datatableId }}">
                                         Confirma o envio das informações?
-                                    </div>
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" id="datatable-btn-confirm{{ $datatableId }}">Sim</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary" id="datatable-btn-confirm{{ $datatableId }}">SIM</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                 </form>
             </div>
         </div>
@@ -254,13 +268,92 @@
                         Confirma a execução da ação selecionada?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Sim</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
+
+    @if (count($actions) > 0)
+        @foreach ($actions as $action)
+            @if (isset($action['url']))
+                <form method="post" action="{{ $action['url'] }}" id="datatable-form-action{{ $action['id'] }}">
+                    @csrf
+                    <div class="modal fade" id="datatable-modal-action{{ $action['id'] }}">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">
+                                        @if (isset($action['modal-title']))
+                                            {!! $action['modal-title'] !!}
+                                        @else
+                                            Executar ação em massa
+                                        @endif
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    @if ($action['sensible'])
+                                        <div class="alert-modal">
+                                            ⚠️ &nbsp; Esta ação não pode ser desfeita.
+                                        </div>
+                                    @endif
+
+                                    <div>
+                                        @if (isset($action['message']))
+                                            {!! nl2br($action['message']) !!}
+                                        @else
+                                            Confirma o envio das informações?
+                                        @endif
+                                    </div>
+
+                                    @if (isset($action['keyword']))
+                                        <div class="form-group" style="margin-top:20px">
+                                            <label for="datatable-modal-action-keyword{{ $action['id'] }}" style="font-weight:normal">Para confirmar a ação, digite "{{ $action['keyword'] }}" abaixo:</label>
+                                            <input type="text" name="keyword" value="" class="form-control" id="datatable-modal-action-keyword{{ $action['id'] }}" placeholder="{{ $action['keyword'] }}" required>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="ids" value="">
+
+                                    <button type="submit" class="btn {{ isset($action['submit-color']) ? 'btn-' . $action['submit-color'] : 'btn-primary' }}">
+                                        @if (isset($action['submit-label']))
+                                            {!! $action['submit-label'] !!}
+                                        @else
+                                            Sim
+                                        @endif
+                                    </button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            @endif
+        @endforeach
+    @endif
+
+    <div class="modal fade" id="datatable-modal-no-items-selected{{ $datatableId }}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Executar ação em massa</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert-modal">
+                        ⚠️ &nbsp; Você deve selecionar pelo menos um item da lista para executar a ação.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="datatable-modal-forbidden{{ $datatableId }}">
         <div class="modal-dialog" role="document">
@@ -270,8 +363,9 @@
                     <h4 class="modal-title">Ação não permitida</h4>
                 </div>
                 <div class="modal-body">
-                    ⚠️
-                    Você não tem permissão para executar esta ação.
+                    <div class="alert-modal">
+                        ⚠️ &nbsp; Você não tem permissão para executar esta ação.
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>

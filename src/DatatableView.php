@@ -73,7 +73,7 @@ class DatatableView extends Component
         $this->perPageQuery = $perPageQuery;
         $this->headers = $this->buildHeaders($headers);
         $this->search = $this->buildSearch($search);
-        $this->actions = $actions;
+        $this->actions = $this->buildActions($actions);
         $this->autoCheckbox = $autoCheckbox;
         $this->buttons = $buttons;
         $this->modals = $modals;
@@ -100,6 +100,16 @@ class DatatableView extends Component
             'name' => 'q',
             'placeholder' => 'Pesquisar',
         ], $search);
+    }
+
+    private function buildActions($actions): array
+    {
+        return array_map(function ($props) {
+            return array_merge([
+                'id' => uniqid(),
+                'sensible' => false,
+            ], $props);
+        }, $actions);
     }
 
     public function render()
