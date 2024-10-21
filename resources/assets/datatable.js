@@ -6,6 +6,7 @@ $('.datatable-select').on('change', function (e) {
     items.each(function () {
         if ($(this).prop('disabled') == false) {
             $(this).prop('checked', checked);
+            $(this).trigger('change');
         }
     });
 });
