@@ -132,7 +132,7 @@
                             @continue
                         @endif
 
-                        <button class="btn btn-default btn-radius" title="{{ $modal['title'] }}" data-toggle="modal" data-target="#{{ $modal['modal'] }}">
+                        <button class="btn btn-default btn-transparent btn-radius" title="{{ $modal['title'] }}" data-toggle="modal" data-target="{{ $modal['modal'] }}">
                             <i class="{{ $modal['icon'] }}"></i>
                         </button>
                     @endforeach
