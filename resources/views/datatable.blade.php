@@ -126,7 +126,7 @@
                     </button>
                 @endif
 
-                @if (count($modals) > 0)
+                @if ((count($modals) > 0) && ($items->total() > 0))
                     @foreach ($modals as $modal)
                         @if ((isset($modal['can']) && auth()->user()) && !auth()->user()->can($modal['can']))
                             @continue
@@ -182,65 +182,71 @@
         @endif
     @endif
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <form method="post" id="datatable-form{{ $datatableId }}">
-                    @csrf
-                    <table class="table table-condensed cut-off" id="datatable{{ $datatableId }}">
-                        <thead>
-                            <tr>
-                                @if (count($actions) > 0)
-                                    <th style="width:25px">
-                                        <input type="checkbox" class="datatable-select">
-                                    </th>
-                                @endif
-
-                                @foreach ($headers as [$label, $width])
-                                    <th style="width: {{ $width }}">
-                                        {!! $label !!}
-                                    </th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($items as $item)
+    @if ($items->total() == 0)
+        <div style="padding:15px 0 40px 0">
+            Nenhum registro foi encontrado.
+        </div>
+    @else
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <form method="post" id="datatable-form{{ $datatableId }}">
+                        @csrf
+                        <table class="table table-condensed cut-off" id="datatable{{ $datatableId }}">
+                            <thead>
                                 <tr>
-                                    @if ((count($actions) > 0) && $autoCheckbox)
-                                        <td>
-                                            <input type="checkbox" value="{{ $item->id }}" name="datatable_checkboxes[]">
-                                        </td>
+                                    @if (count($actions) > 0)
+                                        <th style="width:25px">
+                                            <input type="checkbox" class="datatable-select">
+                                        </th>
                                     @endif
 
-                                    @include($view, $item)
+                                    @foreach ($headers as [$label, $width])
+                                        <th style="width: {{ $width }}">
+                                            {!! $label !!}
+                                        </th>
+                                    @endforeach
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($items as $item)
+                                    <tr>
+                                        @if ((count($actions) > 0) && $autoCheckbox)
+                                            <td>
+                                                <input type="checkbox" value="{{ $item->id }}" name="datatable_checkboxes[]">
+                                            </td>
+                                        @endif
 
-                    {{--<div class="modal fade" id="datatable-modal-action{{ $datatableId }}">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="datatable-modal-action-modal-title">Executar ação em massa</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p id="datatable-modal-action-p-message{{ $datatableId }}">
-                                        Confirma o envio das informações?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" id="datatable-btn-confirm{{ $datatableId }}">SIM</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                                        @include($view, $item)
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        {{--<div class="modal fade" id="datatable-modal-action{{ $datatableId }}">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="datatable-modal-action-modal-title">Executar ação em massa</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="datatable-modal-action-p-message{{ $datatableId }}">
+                                            Confirma o envio das informações?
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" id="datatable-btn-confirm{{ $datatableId }}">SIM</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>--}}
-                </form>
+                        </div>--}}
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     @if (($perPage > 0) && ($items->total() > 0))
         <div class="row datatable-footer">
