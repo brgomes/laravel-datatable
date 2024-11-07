@@ -126,7 +126,7 @@
                     </button>
                 @endif
 
-                @if ((count($modals) > 0) && ($items->total() > 0))
+                @if ((count($modals) > 0) && ($items->count() > 0))
                     @foreach ($modals as $modal)
                         @if ((isset($modal['can']) && auth()->user()) && !auth()->user()->can($modal['can']))
                             @continue
@@ -182,7 +182,7 @@
         @endif
     @endif
 
-    @if ($items->total() == 0)
+    @if ($items->count() == 0)
         <div style="padding:15px 0 40px 0">
             Nenhum registro foi encontrado.
         </div>
