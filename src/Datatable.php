@@ -17,7 +17,7 @@ class Datatable
 
     public $perPageQuery = 'perPage';
 
-    public function __construct(Builder|HasMany|Collection|MorphMany $builder, $perPage = null)
+    public function __construct(Builder|HasMany|Collection|MorphMany $builder = null, $perPage = null)
     {
         $this->builder = $builder;
 
@@ -42,7 +42,7 @@ class Datatable
         $this->content[$key] = $value;
     }
 
-    public function builder(Builder $builder)
+    public function builder(Builder|HasMany|Collection|MorphMany $builder)
     {
         $this->builder = $builder;
 
