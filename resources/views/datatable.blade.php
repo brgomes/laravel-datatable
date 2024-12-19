@@ -179,6 +179,12 @@
                     </div>
                 </div>
             </div>
+        @else
+            <div class="row datatable-header">
+                <div class="col-md-12">
+                    Total de registros: {{ number_format($items->count(), 0, '', '.') }}
+                </div>
+            </div>
         @endif
     @endif
 
@@ -257,6 +263,12 @@
                 <div style="justify-content:right">
                     {{ $items->links() }}
                 </div>
+            </div>
+        </div>
+    @else
+        <div class="row datatable-footer">
+            <div class="col-md-12">
+                Total de registros: {{ number_format($items->count(), 0, '', '.') }}
             </div>
         </div>
     @endif
