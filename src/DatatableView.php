@@ -11,6 +11,7 @@ class DatatableView extends Component
 
     public $route;
     public $view;
+    public $viewResponsive;
     public $filter;
     public $builder;
     public $perPage;
@@ -27,29 +28,31 @@ class DatatableView extends Component
     public function __construct(Datatable $props)
     {
         [
-            'view'          => $view,
-            'filter'        => $filter,
-            'builder'       => $builder,
-            'perPage'       => $perPage,
-            'perPageQuery'  => $perPageQuery,
-            'headers'       => $headers,
-            'search'        => $search,
-            'actions'       => $actions,
-            'autoCheckbox'  => $autoCheckbox,
-            'buttons'       => $buttons,
-            'modals'        => $modals,
+            'view'           => $view,
+            'viewResponsive' => $viewResponsive,
+            'filter'         => $filter,
+            'builder'        => $builder,
+            'perPage'        => $perPage,
+            'perPageQuery'   => $perPageQuery,
+            'headers'        => $headers,
+            'search'         => $search,
+            'actions'        => $actions,
+            'autoCheckbox'   => $autoCheckbox,
+            'buttons'        => $buttons,
+            'modals'         => $modals,
         ] = array_merge([
-            'view'          => null,
-            'filter'        => null,
-            'builder'       => null,
-            'perPage'       => null,
-            'perPageQuery'  => null,
-            'headers'       => [],
-            'search'        => [],
-            'actions'       => [],
-            'autoCheckbox'  => true,
-            'buttons'       => [],
-            'modals'        => [],
+            'view'           => null,
+            'viewResponsive' => null,
+            'filter'         => null,
+            'builder'        => null,
+            'perPage'        => null,
+            'perPageQuery'   => null,
+            'headers'        => [],
+            'search'         => [],
+            'actions'        => [],
+            'autoCheckbox'   => true,
+            'buttons'        => [],
+            'modals'         => [],
         ], $props->toArray());
 
         if ($builder instanceof \Illuminate\Database\Eloquent\Collection) {
@@ -67,6 +70,7 @@ class DatatableView extends Component
 
         $this->datatableId = uniqid();
         $this->view = $view;
+        $this->viewResponsive = $viewResponsive;
         $this->filter = $filter;
         $this->items = $items;
         $this->perPage = $perPage;

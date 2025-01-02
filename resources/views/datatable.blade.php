@@ -182,7 +182,7 @@
         @else
             <div class="row datatable-header">
                 <div class="col-md-12">
-                    Total de registros: {{ number_format($items->count(), 0, '', '.') }}
+                    Total: {{ number_format($items->count(), 0, '', '.') }}
                 </div>
             </div>
         @endif
@@ -194,7 +194,14 @@
         </div>
     @else
         <div class="row">
-            <div class="col-md-12">
+            @if (isset($viewResponsive))
+                <div class="col-md-12 hidden-lg" id="datatable-responsive{{ $datatableId }}">
+                    @foreach ($items as $item)
+                        @include($viewResponsive, ['item' => $item])
+                    @endforeach
+                </div>
+            @endif
+            <div class="col-md-12 @if (isset($viewResponsive)) hidden-xs hidden-sm hidden-md @endif">
                 <div class="table-responsive">
                     <form method="post" id="datatable-form{{ $datatableId }}">
                         @csrf
@@ -223,7 +230,7 @@
                                             </td>
                                         @endif
 
-                                        @include($view, $item)
+                                        @include($view, ['item' => $item])
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -268,7 +275,7 @@
     @else
         <div class="row datatable-footer">
             <div class="col-md-12">
-                Total de registros: {{ number_format($items->count(), 0, '', '.') }}
+                Total: {{ number_format($items->count(), 0, '', '.') }}
             </div>
         </div>
     @endif

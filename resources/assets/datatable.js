@@ -19,13 +19,20 @@ $('.dropdown-menu-actions li a').on('click', function(e) {
         var table = $('#datatable' + id);
         var modal = $(e.target).data('modal');
         var items = $('td:first-child input:checkbox:checked', table);
+        var items2 = $('#datatable-responsive' + id + ' input[type="checkbox"]:checked');
 
-        if (items.length == 0) {
+        if ((items.length == 0) && (items2.length == 0)) {
             $('#datatable-modal-no-items-selected' + id).modal();
         } else {
-            var values = items.map(function(){
-                return $(this).val();
-            }).get();
+            if (items.length > 0) {
+                var values = items.map(function(){
+                    return $(this).val();
+                }).get();
+            } else {
+                var values = items2.map(function(){
+                    return $(this).val();
+                }).get();
+            }
 
             $(modal).children().children().find('input[type=hidden][name="ids"]').val(values.join(','));
             $(modal).modal();

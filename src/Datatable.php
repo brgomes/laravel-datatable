@@ -63,6 +63,7 @@ class Datatable
     {
         return [
             'view' => $this->view,
+            'viewResponsive' => $this->viewResponsive,
             'filter' => $this->filter,
             'builder' => $this->builder,
             'perPage' => $this->perPage,
