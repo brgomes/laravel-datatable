@@ -87,6 +87,13 @@
                                                     @endif
                                                     {!! $action['label'] !!}
                                                 </a>
+                                            @elseif (isset($action['js']))
+                                                <a href="{{ $action['js'] }}" data-js="true">
+                                                    @if (isset($action['icon']))
+                                                        <i class="{{ $action['icon'] }}"></i>
+                                                    @endif
+                                                    {!! $action['label'] !!}
+                                                </a>
                                             @endif
                                         </li>
                                     @endif

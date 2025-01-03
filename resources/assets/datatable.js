@@ -13,8 +13,9 @@ $('.datatable-select').on('change', function (e) {
 
 $('.dropdown-menu-actions li a').on('click', function(e) {
     var id = $(e.target).closest('div.datatable').data('datatableid');
+    var js = $(e.target).data('js');
 
-    if (id != undefined) {
+    if ((js == undefined) && (id != undefined)) {
         e.preventDefault();
         var table = $('#datatable' + id);
         var modal = $(e.target).data('modal');
