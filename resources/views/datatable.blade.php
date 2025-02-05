@@ -347,6 +347,13 @@
                                             <input type="text" name="keyword" value="" class="form-control" id="datatable-modal-action-keyword{{ $action['id'] }}" placeholder="{{ $action['keyword'] }}" required>
                                         </div>
                                     @endif
+
+                                    @if (isset($action['input']))
+                                        <div class="form-group" style="margin-top:20px">
+                                            <label for="datatable-modal-action-input{{ $action['id'] }}" style="font-weight:normal">{{ $action['input']['label'] }}</label>
+                                            <input type="{{ $action['input']['type'] }}" name="{{ $action['input']['name'] }}" value="" class="form-control" id="datatable-modal-action-input{{ $action['id'] }}" placeholder="{{ $action['input']['placeholder'] }}" @if ($action['input']['required']) required @endif>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="modal-footer">
                                     <input type="hidden" name="ids" value="">
