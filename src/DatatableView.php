@@ -14,6 +14,7 @@ class DatatableView extends Component
     public $viewResponsive;
     public $filter;
     public $builder;
+    public $homeURL;
     public $perPage;
     public $perPageQuery;
     public $headers;
@@ -31,6 +32,7 @@ class DatatableView extends Component
             'view'           => $view,
             'viewResponsive' => $viewResponsive,
             'filter'         => $filter,
+            'homeURL'        => $homeURL,
             'builder'        => $builder,
             'perPage'        => $perPage,
             'perPageQuery'   => $perPageQuery,
@@ -45,6 +47,7 @@ class DatatableView extends Component
             'viewResponsive' => null,
             'filter'         => null,
             'builder'        => null,
+            'homeURL'        => null,
             'perPage'        => null,
             'perPageQuery'   => null,
             'headers'        => [],
@@ -73,6 +76,7 @@ class DatatableView extends Component
         $this->viewResponsive = $viewResponsive;
         $this->filter = $filter;
         $this->items = $items;
+        $this->homeURL = $homeURL;
         $this->perPage = $perPage;
         $this->perPageQuery = $perPageQuery;
         $this->headers = $this->buildHeaders($headers);

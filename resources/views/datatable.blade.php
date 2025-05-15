@@ -2,7 +2,7 @@
     @if (($perPage > 0) || (count($actions) > 0) || $filter || $search['visible'] || (count($buttons) > 0) || (count($modals) > 0))
         <div class="row" style="margin-bottom:15px">
             <div class="col-lg-8 col-md-6">
-                <a href="{{ request()->url() }}" class="btn btn-default btn-transparent" title="Listagem inicial"><i class="fa fa-list"></i></a>
+                <a href="{{ isset($homeURL) ? $homeURL : request()->url() }}" class="btn btn-default btn-transparent" title="Listagem inicial"><i class="fa fa-list"></i></a>
 
                 @if (count($buttons) > 0)
                     @foreach ($buttons as $button)

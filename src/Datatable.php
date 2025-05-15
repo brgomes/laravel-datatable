@@ -66,6 +66,7 @@ class Datatable
             'viewResponsive' => $this->viewResponsive,
             'filter' => $this->filter,
             'builder' => $this->builder,
+            'homeURL' => $this->homeURL(),
             'perPage' => $this->perPage,
             'perPageQuery' => $this->perPageQuery,
             'headers' => $this->headers(),
@@ -75,6 +76,11 @@ class Datatable
             'modals' => $this->modals(),
             'autoCheckbox' => $this->autoCheckbox,
         ];
+    }
+
+    public function homeURL():? string
+    {
+        return null;
     }
 
     public function headers(): array
